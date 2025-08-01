@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import { Utensils, User, Lock } from 'lucide-react';
+import { User, Lock } from 'lucide-react';
 
-// Composants de page de base
+// Composant de la page d'accueil
 const HomePage = () => (
   <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center p-8 font-sans">
     <div className="bg-white p-10 rounded-3xl shadow-2xl text-center w-full max-w-2xl">
@@ -32,6 +32,7 @@ const HomePage = () => (
   </div>
 );
 
+// Composant du tableau de bord client
 const ClientDashboard = () => (
   <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center p-8 text-center font-sans">
     <div className="bg-white p-10 rounded-3xl shadow-2xl w-full max-w-2xl">
@@ -39,7 +40,7 @@ const ClientDashboard = () => (
         Espace Client
       </h2>
       <p className="text-gray-600 text-lg">
-        Ceci est un aperçu de l'interface client. Le menu s'affichera ici.
+        Ceci est l'interface client. Le menu s'affichera ici.
       </p>
       <Link to="/" className="mt-8 inline-block text-blue-600 hover:underline">
         Retour à l'accueil
@@ -48,6 +49,7 @@ const ClientDashboard = () => (
   </div>
 );
 
+// Composant du tableau de bord du personnel
 const StaffDashboard = () => (
   <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center p-8 text-center font-sans">
     <div className="bg-white p-10 rounded-3xl shadow-2xl w-full max-w-2xl">
@@ -64,6 +66,7 @@ const StaffDashboard = () => (
   </div>
 );
 
+// Composant de la page de connexion
 const LoginPage = () => (
   <div className="min-h-screen bg-gray-100 flex items-center justify-center p-8 font-sans">
     <div className="bg-white p-10 rounded-3xl shadow-2xl w-full max-w-md text-center">
@@ -73,14 +76,17 @@ const LoginPage = () => (
       <p className="text-gray-600 text-lg mb-6">
         Formulaire de connexion pour le personnel.
       </p>
-      {/* Le formulaire de connexion sera ajouté ici plus tard */}
+      {/* Redirection vers le tableau de bord du personnel après connexion simulée */}
+      <Link to="/staff" className="bg-green-600 text-white font-semibold py-4 px-8 rounded-full shadow-lg hover:bg-green-700 transition duration-300 ease-in-out transform hover:scale-105 flex items-center justify-center space-x-2">
+        <Lock size={20} />
+        <span>Se connecter</span>
+      </Link>
       <Link to="/" className="mt-8 inline-block text-green-600 hover:underline">
         Retour à l'accueil
       </Link>
     </div>
   </div>
 );
-
 
 // Composant principal de l'application
 export default function App() {
@@ -89,8 +95,8 @@ export default function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/client" element={<ClientDashboard />} />
-        <Route path="/staff" element={<StaffDashboard />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/staff" element={<StaffDashboard />} />
       </Routes>
     </Router>
   );
