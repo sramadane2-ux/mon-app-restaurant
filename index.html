@@ -1,144 +1,15 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Application de gestion de restaurant</title>
-  <!-- Tailwind CSS via CDN pour éviter les problèmes de configuration -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- icônes Lucide-React via CDN -->
-  <script src="https://unpkg.com/lucide@latest"></script>
-  <style>
-    /* Utilisez une police lisible pour l'ensemble de l'application */
-    body {
-      font-family: 'Inter', sans-serif;
-    }
-  </style>
-</head>
-<body class="bg-gray-100">
-
-  <div id="app" class="min-h-screen flex flex-col items-center justify-center p-8">
-    <!-- Le contenu de l'application sera injecté ici par JavaScript -->
-  </div>
-
-  <script>
-    // Récupère l'élément racine de l'application
-    const app = document.getElementById('app');
-
-    // Les fonctions pour les icônes
-    const getIcon = (name, size) => {
-      // Les icônes de Lucide-React sont intégrées directement en tant que SVG
-      const icon = lucide.createIcons()[name];
-      if (icon) {
-        return `<span class="w-${size} h-${size}">${icon}</span>`;
-      }
-      return '';
-    };
-
-    // Les différentes pages de l'application
-    const HomePage = () => {
-      app.innerHTML = `
-        <div class="bg-white p-10 rounded-3xl shadow-2xl text-center w-full max-w-2xl">
-          <h1 class="text-5xl font-bold text-gray-900 mb-6">
-            Bienvenue dans l'application de gestion de restaurant
-          </h1>
-          <p class="text-gray-600 mb-8 text-lg">
-            Choisissez votre profil pour continuer.
-          </p>
-          <div class="flex flex-col sm:flex-row gap-6 justify-center">
-            <button
-              id="client-btn"
-              class="bg-blue-600 text-white font-semibold py-4 px-8 rounded-full shadow-lg hover:bg-blue-700 transition duration-300 ease-in-out transform hover:scale-105 flex items-center justify-center space-x-2"
-            >
-              ${getIcon('User', 5)}
-              <span>Client</span>
-            </button>
-            <button
-              id="staff-btn"
-              class="bg-green-600 text-white font-semibold py-4 px-8 rounded-full shadow-lg hover:bg-green-700 transition duration-300 ease-in-out transform hover:scale-105 flex items-center justify-center space-x-2"
-            >
-              ${getIcon('Lock', 5)}
-              <span>Personnel</span>
-            </button>
-          </div>
-        </div>
-      `;
-
-      // Ajoute des écouteurs d'événements pour la navigation
-      document.getElementById('client-btn').addEventListener('click', () => {
-        navigateTo('/client');
-      });
-      document.getElementById('staff-btn').addEventListener('click', () => {
-        navigateTo('/login');
-      });
-    };
-
-    const ClientDashboard = () => {
-      app.innerHTML = `
-        <div class="bg-white p-10 rounded-3xl shadow-2xl w-full max-w-2xl text-center">
-          <h2 class="text-4xl font-bold text-gray-900 mb-4">
-            Espace Client
-          </h2>
-          <p class="text-gray-600 text-lg">
-            Ceci est un aperçu de l'interface client. Le menu s'affichera ici.
-          </p>
-          <button id="back-btn" class="mt-8 inline-block text-blue-600 hover:underline">
-            Retour à l'accueil
-          </button>
-        </div>
-      `;
-      document.getElementById('back-btn').addEventListener('click', () => {
-        navigateTo('/');
-      });
-    };
-
-    const LoginPage = () => {
-      app.innerHTML = `
-        <div class="bg-white p-10 rounded-3xl shadow-2xl w-full max-w-md text-center">
-          <h2 class="text-4xl font-bold text-gray-900 mb-4">
-            Connexion
-          </h2>
-          <p class="text-gray-600 text-lg mb-6">
-            Formulaire de connexion pour le personnel.
-          </p>
-          <!-- Le formulaire de connexion sera ajouté ici plus tard -->
-          <button id="back-btn" class="mt-8 inline-block text-green-600 hover:underline">
-            Retour à l'accueil
-          </button>
-        </div>
-      `;
-      document.getElementById('back-btn').addEventListener('click', () => {
-        navigateTo('/');
-      });
-    };
-
-    // Un simple routeur JavaScript
-    const navigateTo = (path) => {
-      window.history.pushState({}, '', path);
-      renderPage();
-    };
-
-    const renderPage = () => {
-      const path = window.location.pathname;
-      switch (path) {
-        case '/client':
-          ClientDashboard();
-          break;
-        case '/login':
-          LoginPage();
-          break;
-        default:
-          HomePage();
-          break;
-      }
-    };
-
-    // Écoute les événements de l'historique pour la navigation
-    window.addEventListener('popstate', renderPage);
-
-    // Rend la page initiale
-    renderPage();
-  </script>
-
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Application de gestion de restaurant</title>
+  </head>
+  <body>
+    <!-- Le point de montage de l'application React -->
+    <div id="root"></div>
+    <!-- Le script qui charge l'application React -->
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>
